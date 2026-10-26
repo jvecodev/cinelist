@@ -1,0 +1,56 @@
+import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
+import { Button } from '../components/Button';
+import { ErrorView } from '../components/ErrorView';
+import { ItemCard } from '../components/ItemCard';
+import { LoadingView } from '../components/LoadingView';
+import { useShows } from '../hooks/useShows';
+import { colors, spacing, typography } from '../theme';
+import { Show } from '../types/show';
+
+const NUM_COLUMNS = 2;
+
+export function HomeScreen() {
+  const { shows, loading, refreshing, loadingMore, error, refresh, loadMore, retry } = useShows();
+
+  // TODO RF02: navegar para Detalhes passando show.id via route.params
+  function handlePress(_show: Show) {}
+
+  if (loading) return <LoadingView message="Carregando séries..." />;
+  if (error && shows.length === 0) return <ErrorView message={error} onRetry={retry} />;
+
+  return (
+    <FlatList
+      style={styles.list}
+      contentContainerStyle={styles.content}
+      data={shows}
+      keyExtractor={(item) => String(item.id)}
+      numColumns={NUM_COLUMNS}
+      renderItem={({ item }) => <ItemCard show={item} onPress={handlePress} />}
+      onEndReached={loadMore}
+      onEndReachedThreshold={0.5}
+      refreshing={refreshing}
+      onRefresh={refresh}
+      initialNumToRender={8}
+      windowSize={7}
+      removeClippedSubviews
+      ListFooterComponent={
+        <View style={styles.footer}>
+          {loadingMore && <ActivityIndicator color={colors.accent} accessibilityLabel="Carregando mais séries" />}
+          {!!error && !loadingMore && (
+            <>
+              <Text style={styles.footerText}>{error}</Text>
+              <Button title="Tentar novamente" variant="secondary" onPress={retry} />
+            </>
+          )}
+        </View>
+      }
+    />
+  );
+}
+
+const styles = StyleSheet.create({
+  list: { flex: 1, backgroundColor: colors.background },
+  content: { padding: spacing.sm },
+  footer: { padding: spacing.lg, gap: spacing.md, alignItems: 'center' },
+  footerText: { ...typography.caption, color: colors.error, textAlign: 'center' },
+});

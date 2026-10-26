@@ -33,5 +33,14 @@ Nao desabilitar `allowFontScaling` e nao usar altura fixa em textos (RF10).
 - Botoes de estado (favoritar, consumido) usam `accessibilityState={{ selected }}`.
 - Nunca transmitir informacao so por cor.
 
-## Componentes base (a criar nas RFs)
-`ItemCard` (RF01), `Button`, `LoadingView`/`ErrorView` com "Tentar novamente" (RF09).
+## Componentes base (`src/components`)
+
+| Componente | Uso |
+|---|---|
+| `Button` | `variant` primary/secondary, `loading`, `disabled`; altura minima 44, role/state de acessibilidade |
+| `TextField` | label + input + mensagem de erro (`accessibilityRole="alert"`) |
+| `ItemCard` | card do catalogo (RF01): poster com `aspectRatio`, placeholder "Sem imagem", nota |
+| `LoadingView` | carga de tela inteira com `ActivityIndicator` (RF09) |
+| `ErrorView` | mensagem amigavel + botao "Tentar novamente" (RF09) |
+
+Novos componentes devem usar apenas tokens de `src/theme`.
