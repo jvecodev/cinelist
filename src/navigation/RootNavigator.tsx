@@ -3,13 +3,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useState } from 'react';
 import { Pressable, Text } from 'react-native';
 import { HomeScreen } from '../screens/HomeScreen';
+import { DetailsScreen } from '../screens/DetailsScreen';
 import { LoginScreen } from '../screens/LoginScreen';
 import { colors, MIN_TOUCH, typography } from '../theme';
-
-export type RootStackParamList = {
-  Login: undefined;
-  Home: undefined;
-};
+import { RootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -27,6 +24,7 @@ export function RootNavigator() {
     <NavigationContainer theme={navTheme}>
       <Stack.Navigator screenOptions={{ headerTitleStyle: { color: colors.text } }}>
         {signedIn ? (
+          <>
           <Stack.Screen
             name="Home"
             component={HomeScreen}
@@ -45,6 +43,8 @@ export function RootNavigator() {
               ),
             }}
           />
+          <Stack.Screen name="Details" component={DetailsScreen} options={{ title: 'Detalhes' }} />
+          </>
         ) : (
           <Stack.Screen name="Login" options={{ headerShown: false }}>
             {() => <LoginScreen onLogin={() => setSignedIn(true)} />}
