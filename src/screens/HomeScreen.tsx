@@ -4,16 +4,18 @@ import { ErrorView } from '../components/ErrorView';
 import { ItemCard } from '../components/ItemCard';
 import { LoadingView } from '../components/LoadingView';
 import { useShows } from '../hooks/useShows';
+import { HomeScreenProps } from '../navigation/types';
 import { colors, spacing, typography } from '../theme';
 import { Show } from '../types/show';
 
 const NUM_COLUMNS = 2;
 
-export function HomeScreen() {
+export function HomeScreen({ navigation }: HomeScreenProps) {
   const { shows, loading, refreshing, loadingMore, error, refresh, loadMore, retry } = useShows();
 
-  // TODO RF02: navegar para Detalhes passando show.id via route.params
-  function handlePress(_show: Show) {}
+  function handlePress(show: Show) {
+    navigation.navigate('Details', { id: show.id, name: show.name });
+  }
 
   if (loading) return <LoadingView message="Carregando séries..." />;
   if (error && shows.length === 0) return <ErrorView message={error} onRetry={retry} />;
