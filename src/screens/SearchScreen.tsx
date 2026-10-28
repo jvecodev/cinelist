@@ -5,6 +5,7 @@ import { ErrorView } from '../components/ErrorView';
 import { ItemCard } from '../components/ItemCard';
 import { LoadingView } from '../components/LoadingView';
 import { TextField } from '../components/TextField';
+import { useFavorites } from '../contexts/FavoritesContext';
 import { useFetch } from '../hooks/useFetch';
 import { SearchScreenProps } from '../navigation/types';
 import { searchShows } from '../services/shows';
@@ -18,6 +19,7 @@ const NUM_COLUMNS = 2;
 export function SearchScreen({ navigation }: SearchScreenProps) {
   const [term, setTerm] = useState('');
   const [query, setQuery] = useState('');
+  const { favorites, isFavorite } = useFavorites();
   const { data, loading, error, retry } = useFetch((signal) => searchShows(query, signal), [query], {
     enabled: query.length > 0,
     errorMessage: () => 'Não foi possível buscar as séries. Verifique sua conexão e tente novamente.',
@@ -49,7 +51,9 @@ export function SearchScreen({ navigation }: SearchScreenProps) {
         data={data}
         keyExtractor={(item) => String(item.id)}
         numColumns={NUM_COLUMNS}
-        renderItem={({ item }) => <ItemCard show={item} onPress={handlePress} />}
+        // extraData: re-renderiza os cards quando os favoritos mudam (RF04)
+        extraData={favorites}
+        renderItem={({ item }) => <ItemCard show={item} onPress={handlePress} isFavorite={isFavorite(item.id)} />}
         keyboardShouldPersistTaps="handled"
       />
     );
