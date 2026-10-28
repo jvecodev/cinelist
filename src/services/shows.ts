@@ -8,6 +8,12 @@ export async function getShows(page: number): Promise<Show[]> {
   return data;
 }
 
+// /search/shows devolve [{ score, show }] (sem paginacao); lista vazia = sem resultados
+export async function searchShows(query: string, signal?: AbortSignal): Promise<Show[]> {
+  const { data } = await api.get<{ show: Show }[]>('/search/shows', { params: { q: query }, signal });
+  return data.map((r) => r.show);
+}
+
 export async function getShowById(id: number, signal?: AbortSignal): Promise<ShowDetails> {
   const { data } = await api.get<ShowDetails>(`/shows/${id}`, { signal });
   return data;
