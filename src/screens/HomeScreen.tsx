@@ -3,6 +3,7 @@ import { Button } from '../components/Button';
 import { ErrorView } from '../components/ErrorView';
 import { ItemCard } from '../components/ItemCard';
 import { LoadingView } from '../components/LoadingView';
+import { useFavorites } from '../contexts/FavoritesContext';
 import { useShows } from '../hooks/useShows';
 import { HomeScreenProps } from '../navigation/types';
 import { colors, spacing, typography } from '../theme';
@@ -12,6 +13,7 @@ const NUM_COLUMNS = 2;
 
 export function HomeScreen({ navigation }: HomeScreenProps) {
   const { shows, loading, refreshing, loadingMore, error, refresh, loadMore, retry } = useShows();
+  const { favorites, isFavorite } = useFavorites();
 
   function handlePress(show: Show) {
     navigation.navigate('Details', { id: show.id, name: show.name });
@@ -27,7 +29,9 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
       data={shows}
       keyExtractor={(item) => String(item.id)}
       numColumns={NUM_COLUMNS}
-      renderItem={({ item }) => <ItemCard show={item} onPress={handlePress} />}
+      // extraData: re-renderiza os cards quando os favoritos mudam (RF04)
+      extraData={favorites}
+      renderItem={({ item }) => <ItemCard show={item} onPress={handlePress} isFavorite={isFavorite(item.id)} />}
       onEndReached={loadMore}
       onEndReachedThreshold={0.5}
       refreshing={refreshing}

@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { ErrorView } from '../components/ErrorView';
+import { FavoriteButton } from '../components/FavoriteButton';
 import { LoadingView } from '../components/LoadingView';
+import { useFavorites } from '../contexts/FavoritesContext';
 import { useShowDetails } from '../hooks/useShowDetails';
 import { DetailsScreenProps } from '../navigation/types';
 import { colors, radius, spacing, typography } from '../theme';
@@ -21,6 +23,7 @@ function formatYear(date: string | null) {
 export function DetailsScreen({ route, navigation }: DetailsScreenProps) {
   const { id, name } = route.params;
   const { show, loading, error, retry } = useShowDetails(id);
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   // Titulo do header: nome vindo da API (ou o recebido via params enquanto carrega)
   useEffect(() => {
@@ -64,9 +67,12 @@ export function DetailsScreen({ route, navigation }: DetailsScreenProps) {
         </View>
       )}
 
-      <Text style={styles.title} accessibilityRole="header">
-        {show.name}
-      </Text>
+      <View style={styles.titleRow}>
+        <Text style={styles.title} accessibilityRole="header">
+          {show.name}
+        </Text>
+        <FavoriteButton selected={isFavorite(show.id)} onPress={() => toggleFavorite(show)} itemName={show.name} />
+      </View>
 
       {!!show.rating.average && (
         <Text style={styles.rating} accessibilityLabel={`Nota ${show.rating.average} de 10`}>
@@ -108,7 +114,8 @@ const styles = StyleSheet.create({
   image: { width: '100%', maxWidth: 320, aspectRatio: 210 / 295, alignSelf: 'center', borderRadius: radius.md, backgroundColor: colors.surfaceAlt },
   placeholder: { alignItems: 'center', justifyContent: 'center' },
   placeholderText: { ...typography.body, color: colors.textMuted },
-  title: { ...typography.title, color: colors.text },
+  titleRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
+  title: { ...typography.title, color: colors.text, flex: 1 },
   rating: { ...typography.heading, color: colors.star },
   genres: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
   chip: { backgroundColor: colors.surfaceAlt, borderRadius: radius.lg, paddingVertical: spacing.xs, paddingHorizontal: spacing.md },
