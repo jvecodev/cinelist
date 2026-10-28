@@ -34,9 +34,9 @@ Cada item faltante = -20%. Itens `TODO` dependem do grupo ou dos RFs ainda abert
 | RF01 Catálogo, FlatList e paginação | Sim | `src/screens/HomeScreen.tsx`, `src/hooks/useShows.ts` |
 | RF02 Navegação | Sim | `src/navigation/RootNavigator.tsx` |
 | RF03 Detalhes | Sim | `src/screens/DetailsScreen.tsx`, `src/utils/html.ts` |
-| RF04 Favoritos com Context | TODO (PR #17) | `src/contexts/FavoritesContext.tsx` |
-| RF05 Tela de favoritos | TODO (PR #18) | `src/screens/FavoritesScreen.tsx` |
-| RF06 Persistência local | TODO (PR #19) | `src/hooks/usePersistentState.ts`, `src/services/storage.ts` |
+| RF04 Favoritos com Context | Sim | `src/contexts/FavoritesContext.tsx` |
+| RF05 Tela de favoritos | Sim | `src/screens/FavoritesScreen.tsx` |
+| RF06 Persistência local | Sim | `src/hooks/usePersistentState.ts`, `src/services/storage.ts` |
 | RF07 Login, sessão e consumidos | TODO (#7) | TODO |
 | RF08 Busca | TODO (PR #21) | `src/screens/SearchScreen.tsx` |
 | RF09 Feedback de UI | Parcial, falta o login (PR #20) | `src/hooks/useFetch.ts`, `src/components/LoadingView.tsx`, `src/components/ErrorView.tsx` |
