@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { ErrorView } from '../components/ErrorView';
+import { ConsumedControl } from '../components/ConsumedControl';
 import { FavoriteButton } from '../components/FavoriteButton';
 import { LoadingView } from '../components/LoadingView';
 import { useFavorites } from '../contexts/FavoritesContext';
@@ -98,6 +99,8 @@ export function DetailsScreen({ route, navigation }: DetailsScreenProps) {
           </View>
         ))}
       </View>
+
+      <ConsumedControl show={show} />
 
       <Text style={styles.sectionTitle} accessibilityRole="header">
         Sinopse

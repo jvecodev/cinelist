@@ -18,8 +18,8 @@ const FavoritesContext = createContext<FavoritesContextValue | null>(null);
 // Estado global dos favoritos (RF04). Guarda o resumo do item (Show) para a
 // tela de Favoritos listar sem nova requisicao; mais recente primeiro.
 // Persistido no AsyncStorage entre reinicios (RF06).
-export function FavoritesProvider({ children }: { children: ReactNode }) {
-  const [favorites, setFavorites, loading] = usePersistentState<Show[]>(STORAGE_KEYS.favorites, []);
+export function FavoritesProvider({ children, account }: { children: ReactNode; account: string }) {
+  const [favorites, setFavorites, loading] = usePersistentState<Show[]>(`${STORAGE_KEYS.favorites}:${account}`, []);
 
   const ids = useMemo(() => new Set(favorites.map((s) => s.id)), [favorites]);
 
