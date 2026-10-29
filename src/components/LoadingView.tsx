@@ -3,8 +3,8 @@ import { colors, spacing, typography } from '../theme';
 
 export function LoadingView({ message = 'Carregando...' }: { message?: string }) {
   return (
-    <View style={styles.container} accessible accessibilityLabel={message} accessibilityRole="progressbar">
-      <ActivityIndicator size="large" color={colors.accent} />
+    <View style={styles.container} accessible accessibilityLabel={message} accessibilityRole="progressbar" accessibilityState={{ busy: true }} accessibilityLiveRegion="polite">
+      <ActivityIndicator accessible={false} size="large" color={colors.accent} />
       <Text style={styles.text}>{message}</Text>
     </View>
   );

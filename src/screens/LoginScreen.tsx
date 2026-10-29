@@ -65,7 +65,7 @@ export function LoginScreen() {
             onSubmitEditing={handleSubmit}
             returnKeyType="go"
           />
-          {!!submitError && <Text style={styles.error} accessibilityRole="alert">{submitError}</Text>}
+          {!!submitError && <Text style={styles.error} accessibilityRole="alert" accessibilityLiveRegion="assertive">{submitError}</Text>}
           <Button title={register ? 'Criar conta' : 'Entrar'} onPress={handleSubmit} loading={busy} />
           <Button
             title={register ? 'Já tenho conta' : 'Criar uma conta'}

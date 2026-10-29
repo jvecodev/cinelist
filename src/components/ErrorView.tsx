@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
 import { colors, spacing, typography } from '../theme';
 import { Button } from './Button';
 
@@ -9,18 +9,18 @@ type Props = {
 
 export function ErrorView({ message = 'Não foi possível carregar os dados. Verifique sua conexão.', onRetry }: Props) {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title} accessibilityRole="alert">
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.title} accessibilityRole="alert" accessibilityLiveRegion="assertive">
         Ops, algo deu errado
       </Text>
       <Text style={styles.message}>{message}</Text>
       <Button title="Tentar novamente" onPress={onRetry} />
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: spacing.md, padding: spacing.xl },
+  container: { flexGrow: 1, alignItems: 'center', justifyContent: 'center', gap: spacing.md, padding: spacing.xl },
   title: { ...typography.heading, color: colors.text, textAlign: 'center' },
   message: { ...typography.body, color: colors.textMuted, textAlign: 'center' },
 });

@@ -19,6 +19,7 @@ export function ConsumedControl({ show }: { show: Show }) {
             key={rating}
             title={`${rating} ★`}
             variant={item?.rating === rating ? 'primary' : 'secondary'}
+            selected={item?.rating === rating}
             accessibilityLabel={`Dar nota ${rating} de 5 para ${show.name}${item?.rating === rating ? ', nota atual' : ''}`}
             onPress={() => markConsumed(show, rating)}
           />

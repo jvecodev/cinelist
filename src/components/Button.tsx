@@ -8,9 +8,10 @@ type Props = {
   loading?: boolean;
   disabled?: boolean;
   accessibilityLabel?: string;
+  selected?: boolean;
 };
 
-export function Button({ title, onPress, variant = 'primary', loading = false, disabled = false, accessibilityLabel }: Props) {
+export function Button({ title, onPress, variant = 'primary', loading = false, disabled = false, accessibilityLabel, selected }: Props) {
   const isPrimary = variant === 'primary';
   const inactive = disabled || loading;
 
@@ -21,7 +22,7 @@ export function Button({ title, onPress, variant = 'primary', loading = false, d
       accessible
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel ?? title}
-      accessibilityState={{ disabled: inactive, busy: loading }}
+      accessibilityState={{ disabled: inactive, busy: loading, selected }}
       style={({ pressed }) => [
         styles.base,
         isPrimary ? styles.primary : styles.secondary,
@@ -30,7 +31,7 @@ export function Button({ title, onPress, variant = 'primary', loading = false, d
       ]}
     >
       {loading ? (
-        <ActivityIndicator color={colors.primaryText} />
+        <ActivityIndicator color={isPrimary ? colors.primaryText : colors.text} accessible={false} />
       ) : (
         <Text style={[styles.text, !isPrimary && styles.secondaryText]}>{title}</Text>
       )}
@@ -51,6 +52,6 @@ const styles = StyleSheet.create({
   secondary: { backgroundColor: 'transparent', borderWidth: 1, borderColor: colors.border },
   inactive: { opacity: 0.6 },
   pressed: { opacity: 0.85 },
-  text: { ...typography.body, fontWeight: '700', color: colors.primaryText },
+  text: { ...typography.body, fontWeight: '700', color: colors.primaryText, textAlign: 'center', flexShrink: 1 },
   secondaryText: { color: colors.text },
 });

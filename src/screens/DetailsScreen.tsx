@@ -63,7 +63,7 @@ export function DetailsScreen({ route, navigation }: DetailsScreenProps) {
           accessibilityLabel={`Pôster de ${show.name}`}
         />
       ) : (
-        <View style={[styles.image, styles.placeholder]} accessible accessibilityLabel="Série sem imagem">
+        <View style={[styles.image, styles.placeholder]} accessible accessibilityRole="image" accessibilityLabel={`Pôster indisponível para ${show.name}`}>
           <Text style={styles.placeholderText}>Sem imagem</Text>
         </View>
       )}
@@ -125,8 +125,8 @@ const styles = StyleSheet.create({
   chipText: { ...typography.caption, color: colors.text },
   attributes: { backgroundColor: colors.surface, borderRadius: radius.md, padding: spacing.md, gap: spacing.sm },
   attributeRow: { flexDirection: 'row', justifyContent: 'space-between', gap: spacing.md },
-  attributeLabel: { ...typography.caption, color: colors.textMuted },
-  attributeValue: { ...typography.caption, color: colors.text, flexShrink: 1, textAlign: 'right' },
+  attributeLabel: { ...typography.caption, color: colors.textMuted, flex: 1 },
+  attributeValue: { ...typography.caption, color: colors.text, flex: 1, textAlign: 'right' },
   sectionTitle: { ...typography.heading, color: colors.text, marginTop: spacing.sm },
   summary: { ...typography.body, color: colors.text, lineHeight: 24 },
 });

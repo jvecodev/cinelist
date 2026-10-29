@@ -59,3 +59,6 @@ Roteiro no dispositivo: criar conta, sair, tentar senha incorreta, entrar com a
 senha correta, avaliar uma série, alterar a nota, favoritar, fechar e reabrir o app
 e conferir sessão/listas. Sair e entrar em uma segunda conta deve mostrar listas
 independentes. Voltar à primeira conta deve recuperar seus dados.
+
+Para os critérios de acessibilidade, contraste e validação manual com leitor de
+tela, consulte [o roteiro de RF07/RF10](docs/validacao-rf07-rf10.md).

@@ -1,14 +1,14 @@
 import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Alert, Pressable, Text, View } from 'react-native';
+import { Alert, Pressable, View } from 'react-native';
 import { useAuth } from '../contexts/AuthContext';
 import { ConsumedScreen } from '../screens/ConsumedScreen';
 import { HomeScreen } from '../screens/HomeScreen';
 import { DetailsScreen } from '../screens/DetailsScreen';
 import { FavoritesScreen } from '../screens/FavoritesScreen';
 import { LoginScreen } from '../screens/LoginScreen';
-import { colors, MIN_TOUCH, spacing, typography } from '../theme';
+import { colors, MIN_TOUCH, spacing } from '../theme';
 import { RootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -33,7 +33,7 @@ export function RootNavigator() {
             options={({ navigation }) => ({
               title: 'CineLista',
               headerRight: () => (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.md }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.xs }}>
                   <Pressable
                     onPress={() => navigation.navigate('Favorites')}
                     accessibilityRole="button"
@@ -41,7 +41,7 @@ export function RootNavigator() {
                     hitSlop={8}
                     style={{ minWidth: MIN_TOUCH, minHeight: MIN_TOUCH, alignItems: 'center', justifyContent: 'center' }}
                   >
-                    <Ionicons name="heart" size={24} color={colors.accent} />
+                    <Ionicons accessible={false} importantForAccessibility="no" name="heart" size={24} color={colors.accent} />
                   </Pressable>
                   <Pressable
                     onPress={() => navigation.navigate('Consumed')}
@@ -50,7 +50,7 @@ export function RootNavigator() {
                     hitSlop={8}
                     style={{ minWidth: MIN_TOUCH, minHeight: MIN_TOUCH, alignItems: 'center', justifyContent: 'center' }}
                   >
-                    <Ionicons name="checkmark-done" size={24} color={colors.accent} />
+                    <Ionicons accessible={false} importantForAccessibility="no" name="checkmark-done" size={24} color={colors.accent} />
                   </Pressable>
                   <Pressable
                     disabled={busy}
@@ -61,7 +61,7 @@ export function RootNavigator() {
                     hitSlop={8}
                     style={{ minWidth: MIN_TOUCH, minHeight: MIN_TOUCH, justifyContent: 'center' }}
                   >
-                    <Text style={{ ...typography.body, color: colors.accent }}>Sair</Text>
+                    <Ionicons accessible={false} importantForAccessibility="no" name="log-out-outline" size={24} color={colors.accent} />
                   </Pressable>
                 </View>
               ),
