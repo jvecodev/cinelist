@@ -13,7 +13,7 @@ Cada item faltante = -20%. Itens `TODO` dependem do grupo ou dos RFs ainda abert
 - **Projeto:** CineLista - Catálogo Interativo 2.0 (catálogo de séries de TV)
 - **Integrantes (nome completo, igual ao dito no vídeo; quem faltar leva ZERO):**
   - TODO (jvecodev)
-  - TODO (Jcliz)
+  - João Pedro Cardoso de Liz (Jcliz)
   - TODO (eduardofabrii)
   - TODO (rdsalvesPUC)
 
@@ -25,7 +25,7 @@ Cada item faltante = -20%. Itens `TODO` dependem do grupo ou dos RFs ainda abert
 - **Tema:** catálogo de séries de TV
 - **API:** TVMaze (https://www.tvmaze.com/api), pública e sem chave: `/shows?page=`, `/shows/:id`, `/search/shows?q=`
 - **Persistência:** Local, com `@react-native-async-storage/async-storage` (RF06)
-- **Login:** Local (RF07), TODO confirmar: senha com `expo-secure-store`/hash
+- **Login:** Local (RF07), com credenciais e sessão no `expo-secure-store`
 - Tema/API diferente do somativo de Flutter: TODO confirmar (o Flutter usou ______)
 
 ## Seção 3 - Autoavaliação RF01-RF10
@@ -37,10 +37,10 @@ Cada item faltante = -20%. Itens `TODO` dependem do grupo ou dos RFs ainda abert
 | RF04 Favoritos com Context | Sim | `src/contexts/FavoritesContext.tsx` |
 | RF05 Tela de favoritos | Sim | `src/screens/FavoritesScreen.tsx` |
 | RF06 Persistência local | Sim | `src/hooks/usePersistentState.ts`, `src/services/storage.ts` |
-| RF07 Login, sessão e consumidos | TODO (#7) | TODO |
-| RF08 Busca | TODO (PR #21) | `src/screens/SearchScreen.tsx` |
-| RF09 Feedback de UI | Parcial, falta o login (PR #20) | `src/hooks/useFetch.ts`, `src/components/LoadingView.tsx`, `src/components/ErrorView.tsx` |
-| RF10 Acessibilidade | TODO (#10) | `src/theme/index.ts`, `docs/design-system.md` |
+| RF07 Login, sessão e consumidos | Sim, após merge do PR #23 | `src/contexts/AuthContext.tsx`, `src/services/localAuth.ts`, `src/screens/ConsumedScreen.tsx` |
+| RF08 Busca | Sim, após merge do PR #24 | `src/screens/SearchScreen.tsx` |
+| RF09 Feedback de UI | Sim (o loading do login entra com o PR #23) | `src/hooks/useFetch.ts`, `src/components/LoadingView.tsx`, `src/components/ErrorView.tsx` |
+| RF10 Acessibilidade | Sim, após merge do PR #23 | `src/theme/index.ts`, `src/hooks/useGridColumns.ts`, `docs/validacao-rf07-rf10.md` |
 
 ## Seção 4 - Flutter x React Native (meia página)
 TODO grupo: revisar com a experiência real do somativo de Flutter. Pontos que a rubrica pede, com o que temos do lado RN:
@@ -50,7 +50,7 @@ TODO grupo: revisar com a experiência real do somativo de Flutter. Pontos que a
 - **Ferramentas (hot reload x Fast Refresh/Expo Go):** Expo Go no celular, sem build nativo. No Flutter: ______.
 
 ## Seção 5 - Explicação Técnica
-- **Tema:** TODO (sugestão: "Tratamento de falhas de rede": erro na rolagem infinita sem perder a lista, retry, cancelamento com `AbortController` no `useFetch`)
+- **Tema:** TODO, o grupo escolhe um. Opções do enunciado: Context API vs. useState, ciclo de vida com useEffect, FlatList vs. ScrollView + map, navegação condicional, persistência (AsyncStorage vs. SQLite vs. SecureStore), local vs. nuvem, Flutter vs. React Native, tratamento de falhas de rede (sugestão: "Tratamento de falhas de rede": erro na rolagem infinita sem perder a lista, retry, cancelamento com `AbortController` no `useFetch`)
 - **Minuto no vídeo:** 5:30-8:00
 
 ## Seção 6 - Screenshots
@@ -59,12 +59,20 @@ TODO: login, catálogo, detalhes, busca, favoritos, itens consumidos.
 ---
 
 ## Roteiro do vídeo (6 a 9 min; -5% por minuto fora)
+Os tempos dos blocos são os do **roteiro obrigatório do item 7.3** do enunciado e não devem mudar. Cada integrante escreve o roteiro da própria fala.
+
 | Tempo | Bloco | Quem |
 |---|---|---|
-| 0:00-0:30 | Cada um diz o nome completo | Todos |
-| 0:30-2:00 | Demo: login, rolagem infinita, busca, detalhes, favoritos, consumidos, reabrir o app (persistência) | TODO |
-| 2:00-5:30 | Código (~50s cada) | jvecodev RF01-03, Jcliz RF04-06, eduardofabrii RF07/RF10, rdsalvesPUC RF08/RF09 |
-| 5:30-8:00 | Explicação técnica | TODO |
+| 0:00-0:30 | Apresentação: cada um diz o nome completo (igual ao da capa) | Todos |
+| 0:30-2:00 | Demo: login, rolagem infinita, busca, detalhes, favoritos, assistidos, reabrir o app (persistência) | TODO |
+| 2:00-2:50 | Código: RF01, RF02, RF03 | jvecodev |
+| 2:50-3:40 | Código: RF04, RF05, RF06 | Jcliz |
+| 3:40-4:30 | Código: RF07, RF10 | eduardofabrii |
+| 4:30-5:20 | Código: RF08, RF09 | rdsalvesPUC |
+| 5:20-5:30 | Folga | - |
+| 5:30-8:00 | Explicação técnica (~35s por integrante, relacionando com o próprio código) | Todos |
+
+Total previsto: cerca de 8 min, dentro do intervalo de 6 a 9 min.
 
 ## Checklist antes de enviar
 - [ ] Repositório público
