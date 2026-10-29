@@ -8,6 +8,7 @@ import { HomeScreen } from '../screens/HomeScreen';
 import { DetailsScreen } from '../screens/DetailsScreen';
 import { FavoritesScreen } from '../screens/FavoritesScreen';
 import { LoginScreen } from '../screens/LoginScreen';
+import { SearchScreen } from '../screens/SearchScreen';
 import { colors, MIN_TOUCH, spacing } from '../theme';
 import { RootStackParamList } from './types';
 
@@ -67,6 +68,7 @@ export function RootNavigator() {
               ),
             })}
           />
+          <Stack.Screen name="Search" component={SearchScreen} options={{ title: 'Buscar' }} />
           <Stack.Screen name="Details" component={DetailsScreen} options={{ title: 'Detalhes' }} />
           <Stack.Screen name="Consumed" component={ConsumedScreen} options={{ title: 'Assistidos' }} />
           <Stack.Screen name="Favorites" component={FavoritesScreen} options={{ title: 'Favoritos' }} />
