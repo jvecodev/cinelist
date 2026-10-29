@@ -12,10 +12,10 @@ Cada item faltante = -20%. Itens `TODO` dependem do grupo ou dos RFs ainda abert
 - **Data de entrega:** 02/11/2026
 - **Projeto:** CineLista - Catálogo Interativo 2.0 (catálogo de séries de TV)
 - **Integrantes (nome completo, igual ao dito no vídeo; quem faltar leva ZERO):**
-  - TODO (jvecodev)
+  - Eduardo Fabrie (eduardofabrii)
   - João Pedro Cardoso de Liz (Jcliz)
-  - TODO (eduardofabrii)
-  - TODO (rdsalvesPUC)
+  - João Vitor Correa Oliveira (jvecodev)
+  - Rodrigo Alves (rdsalvesPUC)
 
 ## Seção 1 - Links
 - **Repositório (público):** https://github.com/jvecodev/cinelist (README explica `npx expo start`)
