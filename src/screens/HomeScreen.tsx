@@ -1,17 +1,20 @@
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { ActivityIndicator, FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Button } from '../components/Button';
 import { ErrorView } from '../components/ErrorView';
 import { ItemCard } from '../components/ItemCard';
 import { LoadingView } from '../components/LoadingView';
+import { useFavorites } from '../contexts/FavoritesContext';
 import { useShows } from '../hooks/useShows';
 import { HomeScreenProps } from '../navigation/types';
-import { colors, spacing, typography } from '../theme';
+import { colors, MIN_TOUCH, radius, spacing, typography } from '../theme';
 import { Show } from '../types/show';
 
 const NUM_COLUMNS = 2;
 
 export function HomeScreen({ navigation }: HomeScreenProps) {
   const { shows, loading, refreshing, loadingMore, error, refresh, loadMore, retry } = useShows();
+  const { favorites, isFavorite } = useFavorites();
 
   function handlePress(show: Show) {
     navigation.navigate('Details', { id: show.id, name: show.name });
@@ -27,7 +30,9 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
       data={shows}
       keyExtractor={(item) => String(item.id)}
       numColumns={NUM_COLUMNS}
-      renderItem={({ item }) => <ItemCard show={item} onPress={handlePress} />}
+      // extraData: re-renderiza os cards quando os favoritos mudam (RF04)
+      extraData={favorites}
+      renderItem={({ item }) => <ItemCard show={item} onPress={handlePress} isFavorite={isFavorite(item.id)} />}
       onEndReached={loadMore}
       onEndReachedThreshold={0.5}
       refreshing={refreshing}
@@ -46,6 +51,17 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
           )}
         </View>
       }
+      ListHeaderComponent={
+        <Pressable
+          onPress={() => navigation.navigate('Search')}
+          accessibilityRole="button"
+          accessibilityLabel="Buscar séries"
+          style={({ pressed }) => [styles.search, pressed && styles.pressed]}
+        >
+          <Ionicons name="search" size={20} color={colors.textMuted} accessible={false} />
+          <Text style={styles.searchText}>Buscar séries</Text>
+        </Pressable>
+      }
     />
   );
 }
@@ -55,4 +71,19 @@ const styles = StyleSheet.create({
   content: { padding: spacing.sm },
   footer: { padding: spacing.lg, gap: spacing.md, alignItems: 'center' },
   footerText: { ...typography.caption, color: colors.error, textAlign: 'center' },
+  search: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    minHeight: MIN_TOUCH,
+    margin: spacing.xs,
+    marginBottom: spacing.sm,
+    paddingHorizontal: spacing.md,
+    borderRadius: radius.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    backgroundColor: colors.surface,
+  },
+  pressed: { opacity: 0.85 },
+  searchText: { ...typography.body, color: colors.textMuted },
 });

@@ -42,5 +42,6 @@ Nao desabilitar `allowFontScaling` e nao usar altura fixa em textos (RF10).
 | `ItemCard` | card do catalogo (RF01): poster com `aspectRatio`, placeholder "Sem imagem", nota |
 | `LoadingView` | carga de tela inteira com `ActivityIndicator` (RF09) |
 | `ErrorView` | mensagem amigavel + botao "Tentar novamente" (RF09) |
+| `FavoriteButton` | coracao de favoritar (RF04); label muda e usa `accessibilityState={{ selected }}` |
 
 Novos componentes devem usar apenas tokens de `src/theme`.

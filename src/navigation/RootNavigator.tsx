@@ -1,11 +1,14 @@
+import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useState } from 'react';
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { HomeScreen } from '../screens/HomeScreen';
 import { DetailsScreen } from '../screens/DetailsScreen';
+import { FavoritesScreen } from '../screens/FavoritesScreen';
 import { LoginScreen } from '../screens/LoginScreen';
-import { colors, MIN_TOUCH, typography } from '../theme';
+import { SearchScreen } from '../screens/SearchScreen';
+import { colors, MIN_TOUCH, spacing, typography } from '../theme';
 import { RootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -28,22 +31,35 @@ export function RootNavigator() {
           <Stack.Screen
             name="Home"
             component={HomeScreen}
-            options={{
+            options={({ navigation }) => ({
               title: 'CineLista',
               headerRight: () => (
-                <Pressable
-                  onPress={() => setSignedIn(false)}
-                  accessibilityRole="button"
-                  accessibilityLabel="Sair da conta"
-                  hitSlop={8}
-                  style={{ minHeight: MIN_TOUCH, justifyContent: 'center' }}
-                >
-                  <Text style={{ ...typography.body, color: colors.accent }}>Sair</Text>
-                </Pressable>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.md }}>
+                  <Pressable
+                    onPress={() => navigation.navigate('Favorites')}
+                    accessibilityRole="button"
+                    accessibilityLabel="Ver favoritos"
+                    hitSlop={8}
+                    style={{ minWidth: MIN_TOUCH, minHeight: MIN_TOUCH, alignItems: 'center', justifyContent: 'center' }}
+                  >
+                    <Ionicons name="heart" size={24} color={colors.accent} />
+                  </Pressable>
+                  <Pressable
+                    onPress={() => setSignedIn(false)}
+                    accessibilityRole="button"
+                    accessibilityLabel="Sair da conta"
+                    hitSlop={8}
+                    style={{ minHeight: MIN_TOUCH, justifyContent: 'center' }}
+                  >
+                    <Text style={{ ...typography.body, color: colors.accent }}>Sair</Text>
+                  </Pressable>
+                </View>
               ),
-            }}
+            })}
           />
+          <Stack.Screen name="Search" component={SearchScreen} options={{ title: 'Buscar' }} />
           <Stack.Screen name="Details" component={DetailsScreen} options={{ title: 'Detalhes' }} />
+          <Stack.Screen name="Favorites" component={FavoritesScreen} options={{ title: 'Favoritos' }} />
           </>
         ) : (
           <Stack.Screen name="Login" options={{ headerShown: false }}>
