@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { ActivityIndicator, FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Button } from '../components/Button';
 import { ErrorView } from '../components/ErrorView';
+import { useGridColumns } from '../hooks/useGridColumns';
 import { ItemCard } from '../components/ItemCard';
 import { LoadingView } from '../components/LoadingView';
 import { useFavorites } from '../contexts/FavoritesContext';
@@ -10,10 +11,9 @@ import { HomeScreenProps } from '../navigation/types';
 import { colors, MIN_TOUCH, radius, spacing, typography } from '../theme';
 import { Show } from '../types/show';
 
-const NUM_COLUMNS = 2;
-
 export function HomeScreen({ navigation }: HomeScreenProps) {
   const { shows, loading, refreshing, loadingMore, error, refresh, loadMore, retry } = useShows();
+  const columns = useGridColumns();
   const { favorites, isFavorite } = useFavorites();
 
   function handlePress(show: Show) {
@@ -25,21 +25,22 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
 
   return (
     <FlatList
+      key={columns}
       style={styles.list}
       contentContainerStyle={styles.content}
       data={shows}
       keyExtractor={(item) => String(item.id)}
-      numColumns={NUM_COLUMNS}
+      numColumns={columns}
       // extraData: re-renderiza os cards quando os favoritos mudam (RF04)
       extraData={favorites}
-      renderItem={({ item }) => <ItemCard show={item} onPress={handlePress} isFavorite={isFavorite(item.id)} />}
+      renderItem={({ item }) => <ItemCard columns={columns} show={item} onPress={handlePress} isFavorite={isFavorite(item.id)} />}
       onEndReached={loadMore}
       onEndReachedThreshold={0.5}
       refreshing={refreshing}
       onRefresh={refresh}
       initialNumToRender={8}
       windowSize={7}
-      removeClippedSubviews
+      removeClippedSubviews={false}
       ListFooterComponent={
         <View style={styles.footer}>
           {loadingMore && <ActivityIndicator color={colors.accent} accessibilityLabel="Carregando mais séries" />}

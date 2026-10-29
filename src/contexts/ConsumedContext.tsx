@@ -27,8 +27,8 @@ function clampRating(rating: number) {
 
 // Itens "consumidos" (assistidos) persistidos localmente (RF06).
 // A UI de marcar/listar consumidos fica no RF07, que usa o hook useConsumed().
-export function ConsumedProvider({ children }: { children: ReactNode }) {
-  const [consumed, setConsumed, loading] = usePersistentState<ConsumedItem[]>(STORAGE_KEYS.consumed, []);
+export function ConsumedProvider({ children, account }: { children: ReactNode; account: string }) {
+  const [consumed, setConsumed, loading] = usePersistentState<ConsumedItem[]>(`${STORAGE_KEYS.consumed}:${account}`, []);
 
   const byId = useMemo(() => new Map(consumed.map((c) => [c.show.id, c])), [consumed]);
 

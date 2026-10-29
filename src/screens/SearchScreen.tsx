@@ -7,12 +7,11 @@ import { LoadingView } from '../components/LoadingView';
 import { TextField } from '../components/TextField';
 import { useFavorites } from '../contexts/FavoritesContext';
 import { useFetch } from '../hooks/useFetch';
+import { useGridColumns } from '../hooks/useGridColumns';
 import { SearchScreenProps } from '../navigation/types';
 import { searchShows } from '../services/shows';
 import { colors, spacing, typography } from '../theme';
 import { Show } from '../types/show';
-
-const NUM_COLUMNS = 2;
 
 // Busca (RF08): o TextInput e controlado e so o botao "Buscar" (ou enviar no
 // teclado) dispara a requisicao. Resultados em lista; tocar abre Detalhes.
@@ -20,6 +19,7 @@ export function SearchScreen({ navigation }: SearchScreenProps) {
   const [term, setTerm] = useState('');
   const [query, setQuery] = useState('');
   const { favorites, isFavorite } = useFavorites();
+  const columns = useGridColumns();
   const { data, loading, error, retry } = useFetch((signal) => searchShows(query, signal), [query], {
     enabled: query.length > 0,
     errorMessage: () => 'Não foi possível buscar as séries. Verifique sua conexão e tente novamente.',
@@ -47,13 +47,14 @@ export function SearchScreen({ navigation }: SearchScreenProps) {
       );
     return (
       <FlatList
+        key={columns}
         contentContainerStyle={styles.list}
         data={data}
         keyExtractor={(item) => String(item.id)}
-        numColumns={NUM_COLUMNS}
+        numColumns={columns}
         // extraData: re-renderiza os cards quando os favoritos mudam (RF04)
         extraData={favorites}
-        renderItem={({ item }) => <ItemCard show={item} onPress={handlePress} isFavorite={isFavorite(item.id)} />}
+        renderItem={({ item }) => <ItemCard columns={columns} show={item} onPress={handlePress} isFavorite={isFavorite(item.id)} />}
         keyboardShouldPersistTaps="handled"
       />
     );

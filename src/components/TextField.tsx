@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import { StyleSheet, Text, TextInput, TextInputProps, View } from 'react-native';
 import { colors, MIN_TOUCH, radius, spacing, typography } from '../theme';
 
@@ -7,18 +8,21 @@ type Props = TextInputProps & {
 };
 
 export function TextField({ label, error, ...inputProps }: Props) {
+  const id = useId();
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>{label}</Text>
+      <Text nativeID={`${id}-label`} style={styles.label}>{label}</Text>
       <TextInput
         accessible
         accessibilityLabel={label}
+        accessibilityLabelledBy={`${id}-label`}
+        accessibilityHint={error ? `Erro: ${error}` : undefined}
         placeholderTextColor={colors.textMuted}
         style={[styles.input, !!error && styles.inputError]}
         {...inputProps}
       />
       {!!error && (
-        <Text style={styles.error} accessibilityRole="alert">
+        <Text style={styles.error} accessibilityRole="alert" accessibilityLiveRegion="polite">
           {error}
         </Text>
       )}
@@ -32,6 +36,7 @@ const styles = StyleSheet.create({
   input: {
     minHeight: MIN_TOUCH,
     paddingHorizontal: spacing.md,
+    paddingVertical: spacing.md,
     borderRadius: radius.md,
     borderWidth: 1,
     borderColor: colors.border,

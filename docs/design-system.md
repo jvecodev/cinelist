@@ -10,7 +10,7 @@ Tema escuro. Regras vindas do RF10 do enunciado (`projeto_somativo_react_native.
 | background | `#0F1115` | fundo das telas | - |
 | surface | `#1A1D24` | cards, inputs | - |
 | surfaceAlt | `#262B35` | itens em destaque, placeholder de imagem | - |
-| border | `#343A47` | bordas | - |
+| border | `#697588` | bordas | 3,61:1 sobre surface |
 | text | `#F2F4F8` | texto principal | 17.2:1 no fundo, 15.3:1 no card |
 | textMuted | `#A9B1BF` | texto secundario | 8.8:1 no fundo, 7.8:1 no card |
 | primary | `#D81F2A` | botoes principais | texto branco 5.1:1 |

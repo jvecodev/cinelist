@@ -1,17 +1,17 @@
 import { Ionicons } from '@expo/vector-icons';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { Button } from '../components/Button';
+import { useGridColumns } from '../hooks/useGridColumns';
 import { ItemCard } from '../components/ItemCard';
 import { useFavorites } from '../contexts/FavoritesContext';
 import { FavoritesScreenProps } from '../navigation/types';
 import { colors, spacing, typography } from '../theme';
 import { Show } from '../types/show';
 
-const NUM_COLUMNS = 2;
-
 // Lista os favoritos direto do Context (RF05): ao desfavoritar em Detalhes,
 // o item some daqui sem recarregar nada.
 export function FavoritesScreen({ navigation }: FavoritesScreenProps) {
+  const columns = useGridColumns();
   const { favorites } = useFavorites();
 
   function handlePress(show: Show) {
@@ -20,12 +20,13 @@ export function FavoritesScreen({ navigation }: FavoritesScreenProps) {
 
   return (
     <FlatList
+      key={columns}
       style={styles.list}
       contentContainerStyle={[styles.content, favorites.length === 0 && styles.emptyContent]}
       data={favorites}
       keyExtractor={(item) => String(item.id)}
-      numColumns={NUM_COLUMNS}
-      renderItem={({ item }) => <ItemCard show={item} onPress={handlePress} isFavorite />}
+      numColumns={columns}
+      renderItem={({ item }) => <ItemCard columns={columns} show={item} onPress={handlePress} isFavorite />}
       ListEmptyComponent={
         <View style={styles.empty}>
           <Ionicons name="heart-outline" size={56} color={colors.textMuted} accessible={false} />

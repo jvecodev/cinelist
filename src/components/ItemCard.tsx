@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors, radius, spacing, typography } from '../theme';
+import { colors, MIN_TOUCH, radius, spacing, typography } from '../theme';
 import { Show } from '../types/show';
 
 type Props = {
@@ -8,11 +8,12 @@ type Props = {
   onPress: (show: Show) => void;
   // Mesmo estado do Context de favoritos, recebido via props (RF04)
   isFavorite?: boolean;
+  columns?: number;
 };
 
-export function ItemCard({ show, onPress, isFavorite = false }: Props) {
+export function ItemCard({ show, onPress, isFavorite = false, columns = 2 }: Props) {
   const rating = show.rating.average;
-  const label = [show.name, rating && `nota ${rating}`, isFavorite && 'favorita'].filter(Boolean).join(', ');
+  const label = [show.name, rating != null && `nota ${rating} de 10`, isFavorite && 'favorita'].filter(Boolean).join(', ');
 
   return (
     <Pressable
@@ -21,7 +22,7 @@ export function ItemCard({ show, onPress, isFavorite = false }: Props) {
       accessibilityRole="button"
       accessibilityLabel={label}
       accessibilityHint="Abre os detalhes da série"
-      style={({ pressed }) => [styles.card, pressed && styles.pressed]}
+      style={({ pressed }) => [styles.card, { maxWidth: columns === 1 ? '100%' : '50%' }, pressed && styles.pressed]}
     >
       {show.image ? (
         <Image source={{ uri: show.image.medium }} style={styles.image} accessible={false} resizeMode="cover" />
@@ -36,7 +37,7 @@ export function ItemCard({ show, onPress, isFavorite = false }: Props) {
         </View>
       )}
       <View style={styles.info}>
-        <Text style={styles.name} numberOfLines={2}>
+        <Text style={styles.name}>
           {show.name}
         </Text>
         {!!rating && <Text style={styles.rating}>★ {rating.toFixed(1)}</Text>}
@@ -48,8 +49,8 @@ export function ItemCard({ show, onPress, isFavorite = false }: Props) {
 const styles = StyleSheet.create({
   card: {
     flex: 1,
-    // item sozinho na ultima linha da grade nao ocupa a largura toda
-    maxWidth: '50%',
+    minWidth: MIN_TOUCH,
+    minHeight: MIN_TOUCH,
     margin: spacing.xs,
     backgroundColor: colors.surface,
     borderRadius: radius.md,

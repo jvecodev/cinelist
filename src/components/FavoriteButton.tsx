@@ -20,7 +20,7 @@ export function FavoriteButton({ selected, onPress, itemName }: Props) {
       hitSlop={8}
       style={({ pressed }) => [styles.button, pressed && styles.pressed]}
     >
-      <Ionicons name={selected ? 'heart' : 'heart-outline'} size={28} color={selected ? colors.accent : colors.text} />
+      <Ionicons accessible={false} importantForAccessibility="no" name={selected ? 'heart' : 'heart-outline'} size={28} color={selected ? colors.accent : colors.text} />
     </Pressable>
   );
 }
