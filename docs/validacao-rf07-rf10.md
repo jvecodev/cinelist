@@ -11,8 +11,11 @@
 
 ## RF07: roteiro no aparelho
 
-Ainda requer execução manual em Android/iOS; não há simulador configurado no
-ambiente de implementação.
+O usuário confirmou testes no celular sem problemas: cadastro/login, rejeição de
+senha incorreta, sessão após fechar e reabrir, avaliação de séries, consulta,
+alteração e remoção de notas. A confirmação foi fornecida pelo usuário; a execução
+no dispositivo não foi observada pelo agente. Modelo e versão do sistema não foram
+informados. O roteiro completo abaixo fica como referência para regressão.
 
 1. Criar uma conta, sair e confirmar que o botão Voltar não abre o catálogo.
 2. Tentar login com senha errada; confirmar mensagem e permanência no login.
@@ -58,7 +61,7 @@ secundários do fundo. Referências de implementação:
 [acessibilidade no React Native](https://reactnative.dev/docs/accessibility) e
 [dimensões e escala de fonte](https://reactnative.dev/docs/usewindowdimensions).
 
-## RF10: roteiro pendente em TalkBack e VoiceOver
+## RF10: roteiro de leitor de tela e fonte ampliada
 
 - Ativar o leitor de tela e percorrer login/cadastro, catálogo, favoritos,
   detalhes e assistidos. Conferir ordem de foco e leitura em português.
@@ -70,8 +73,10 @@ secundários do fundo. Referências de implementação:
 - Confirmar retorno do foco ao navegar e ausência de elementos fora da tela que
   recebam foco indevidamente.
 
-RF10 não deve ser considerada validada em dispositivo antes de executar esse
-roteiro com TalkBack/VoiceOver.
+O usuário confirmou que os testes com TalkBack e fonte ampliada passaram sem
+problemas. Essa confirmação cobre o dispositivo utilizado; não houve confirmação
+de teste separado com VoiceOver no iOS. O roteiro fica como referência para a
+revisão e para novos testes após a integração dos PRs da equipe.
 
 ## Integração com o trabalho da equipe
 
