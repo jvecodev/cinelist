@@ -12,7 +12,7 @@ Cada item faltante = -20%. Itens `TODO` dependem do grupo ou dos RFs ainda abert
 - **Data de entrega:** 02/11/2026
 - **Projeto:** CineLista - Catálogo Interativo 2.0 (catálogo de séries de TV)
 - **Integrantes (nome completo, igual ao dito no vídeo; quem faltar leva ZERO):**
-  - Eduardo Fabrie (eduardofabrii)
+  - Eduardo Fabri (eduardofabrii)
   - João Pedro Cardoso de Liz (Jcliz)
   - João Vitor Correa Oliveira (jvecodev)
   - Rodrigo Alves (rdsalvesPUC)
