@@ -8,7 +8,7 @@ Cada item faltante = -20%. Itens `TODO` dependem do grupo.
 ## Capa
 - **Disciplina:** Desenvolvimento Mobile Híbrido - Bacharelado em Sistemas de Informação (BSI)
 - **Professor:** Mark Joselli
-- **Turma:** TODO
+- **Turma:** 6º A - Sistemas de Informação (Noite) - 2026 / 2º Sem
 - **Data de entrega:** 02/11/2026
 - **Projeto:** CineLista - Catálogo Interativo 2.0 (catálogo de séries de TV)
 - **Integrantes (nome completo, igual ao dito no vídeo; quem faltar leva ZERO):**
@@ -26,7 +26,7 @@ Cada item faltante = -20%. Itens `TODO` dependem do grupo.
 - **API:** TVMaze (https://www.tvmaze.com/api), pública e sem chave: `/shows?page=`, `/shows/:id`, `/search/shows?q=`
 - **Persistência:** Local, com `@react-native-async-storage/async-storage` (RF06)
 - **Login:** Local (RF07), com credenciais e sessão no `expo-secure-store`
-- Tema/API diferente do somativo de Flutter: TODO confirmar (o Flutter usou ______)
+- Tema diferente do somativo de Flutter: Sim (Flutter: música; React Native: cinema/séries)
 
 ## Seção 3 - Autoavaliação RF01-RF10
 | RF | Implementado | Arquivo principal |
@@ -54,7 +54,12 @@ TODO grupo: revisar com a experiência real do somativo de Flutter. Pontos que a
 - **Minuto no vídeo:** 5:30-8:00
 
 ## Seção 6 - Screenshots
-TODO: login, catálogo, detalhes, busca, favoritos, itens consumidos.
+- **Login:** ![Login](screenshots/01-login.png)
+- **Catálogo:** ![Catálogo](screenshots/02-catalogo.png)
+- **Detalhes:** ![Detalhes](screenshots/03-detalhes.png)
+- **Busca:** ![Busca](screenshots/04-busca.png)
+- **Favoritos:** ![Favoritos](screenshots/05-favoritos.png)
+- **Itens consumidos (Assistidos):** ![Itens consumidos (Assistidos)](screenshots/06-assistidos.png)
 
 ---
 
