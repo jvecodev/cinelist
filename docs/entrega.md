@@ -54,7 +54,12 @@ TODO grupo: revisar com a experiência real do somativo de Flutter. Pontos que a
 - **Minuto no vídeo:** 5:30-8:00
 
 ## Seção 6 - Screenshots
-TODO: login, catálogo, detalhes, busca, favoritos, itens consumidos.
+- **Login:** ![Login](screenshots/01-login.png)
+- **Catálogo:** ![Catálogo](screenshots/02-catalogo.png)
+- **Detalhes:** ![Detalhes](screenshots/03-detalhes.png)
+- **Busca:** ![Busca](screenshots/04-busca.png)
+- **Favoritos:** ![Favoritos](screenshots/05-favoritos.png)
+- **Itens consumidos (Assistidos):** ![Itens consumidos (Assistidos)](screenshots/06-assistidos.png)
 
 ---
 
