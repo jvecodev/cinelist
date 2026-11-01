@@ -50,7 +50,7 @@ TODO grupo: revisar com a experiência real do somativo de Flutter. Pontos que a
 - **Ferramentas (hot reload x Fast Refresh/Expo Go):** Expo Go no celular, sem build nativo. No Flutter: ______.
 
 ## Seção 5 - Explicação Técnica
-- **Tema:** TODO, o grupo escolhe um. Opções do enunciado: Context API vs. useState, ciclo de vida com useEffect, FlatList vs. ScrollView + map, navegação condicional, persistência (AsyncStorage vs. SQLite vs. SecureStore), local vs. nuvem, Flutter vs. React Native, tratamento de falhas de rede (sugestão: "Tratamento de falhas de rede": erro na rolagem infinita sem perder a lista, retry, cancelamento com `AbortController` no `useFetch`)
+- **Tema:** Navegação condicional: como o `AuthContext` decide entre o Stack de login e o Stack do app, e por que não usar `navigation.navigate('Login')` no logout (`src/contexts/AuthContext.tsx`, `src/navigation/RootNavigator.tsx`, `App.tsx`)
 - **Minuto no vídeo:** 5:30-8:00
 
 ## Seção 6 - Screenshots
