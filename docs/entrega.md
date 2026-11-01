@@ -1,7 +1,7 @@
 # Rascunho do PDF de entrega (issue #12)
 
 Fonte para montar o PDF único enviado pelo **campo oficial** do Canvas (não por comentário: -30%).
-Cada item faltante = -20%. Itens `TODO` dependem do grupo ou dos RFs ainda abertos.
+Cada item faltante = -20%. Itens `TODO` dependem do grupo.
 
 ---
 
@@ -12,10 +12,10 @@ Cada item faltante = -20%. Itens `TODO` dependem do grupo ou dos RFs ainda abert
 - **Data de entrega:** 02/11/2026
 - **Projeto:** CineLista - Catálogo Interativo 2.0 (catálogo de séries de TV)
 - **Integrantes (nome completo, igual ao dito no vídeo; quem faltar leva ZERO):**
-  - TODO (jvecodev)
+  - Eduardo Fabri (eduardofabrii)
   - João Pedro Cardoso de Liz (Jcliz)
-  - TODO (eduardofabrii)
-  - TODO (rdsalvesPUC)
+  - João Vitor Correa Oliveira (jvecodev)
+  - Rodrigo Alves (rdsalvesPUC)
 
 ## Seção 1 - Links
 - **Repositório (público):** https://github.com/jvecodev/cinelist (README explica `npx expo start`)
@@ -37,10 +37,10 @@ Cada item faltante = -20%. Itens `TODO` dependem do grupo ou dos RFs ainda abert
 | RF04 Favoritos com Context | Sim | `src/contexts/FavoritesContext.tsx` |
 | RF05 Tela de favoritos | Sim | `src/screens/FavoritesScreen.tsx` |
 | RF06 Persistência local | Sim | `src/hooks/usePersistentState.ts`, `src/services/storage.ts` |
-| RF07 Login, sessão e consumidos | Sim, após merge do PR #23 | `src/contexts/AuthContext.tsx`, `src/services/localAuth.ts`, `src/screens/ConsumedScreen.tsx` |
-| RF08 Busca | Sim, após merge do PR #24 | `src/screens/SearchScreen.tsx` |
-| RF09 Feedback de UI | Sim (o loading do login entra com o PR #23) | `src/hooks/useFetch.ts`, `src/components/LoadingView.tsx`, `src/components/ErrorView.tsx` |
-| RF10 Acessibilidade | Sim, após merge do PR #23 | `src/theme/index.ts`, `src/hooks/useGridColumns.ts`, `docs/validacao-rf07-rf10.md` |
+| RF07 Login, sessão e consumidos | Sim | `src/contexts/AuthContext.tsx`, `src/services/localAuth.ts`, `src/screens/ConsumedScreen.tsx` |
+| RF08 Busca | Sim | `src/screens/SearchScreen.tsx` |
+| RF09 Feedback de UI | Sim | `src/hooks/useFetch.ts`, `src/components/LoadingView.tsx`, `src/components/ErrorView.tsx` |
+| RF10 Acessibilidade | Sim | `src/theme/index.ts`, `src/hooks/useGridColumns.ts`, `docs/validacao-rf07-rf10.md` |
 
 ## Seção 4 - Flutter x React Native (meia página)
 TODO grupo: revisar com a experiência real do somativo de Flutter. Pontos que a rubrica pede, com o que temos do lado RN:
@@ -50,7 +50,7 @@ TODO grupo: revisar com a experiência real do somativo de Flutter. Pontos que a
 - **Ferramentas (hot reload x Fast Refresh/Expo Go):** Expo Go no celular, sem build nativo. No Flutter: ______.
 
 ## Seção 5 - Explicação Técnica
-- **Tema:** TODO, o grupo escolhe um. Opções do enunciado: Context API vs. useState, ciclo de vida com useEffect, FlatList vs. ScrollView + map, navegação condicional, persistência (AsyncStorage vs. SQLite vs. SecureStore), local vs. nuvem, Flutter vs. React Native, tratamento de falhas de rede (sugestão: "Tratamento de falhas de rede": erro na rolagem infinita sem perder a lista, retry, cancelamento com `AbortController` no `useFetch`)
+- **Tema:** Navegação condicional: como o `AuthContext` decide entre o Stack de login e o Stack do app, e por que não usar `navigation.navigate('Login')` no logout (`src/contexts/AuthContext.tsx`, `src/navigation/RootNavigator.tsx`, `App.tsx`)
 - **Minuto no vídeo:** 5:30-8:00
 
 ## Seção 6 - Screenshots
