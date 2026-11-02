@@ -19,7 +19,7 @@ Cada item faltante = -20%. Itens `TODO` dependem do grupo.
 
 ## Seção 1 - Links
 - **Repositório (público):** https://github.com/jvecodev/cinelist (README explica `npx expo start`)
-- **Vídeo (YouTube, público):** TODO
+- **Vídeo (YouTube, público):** https://www.youtube.com/watch?v=yni1ljT0eOc
 
 ## Seção 2 - Tema e Configuração
 - **Tema:** catálogo de séries de TV
