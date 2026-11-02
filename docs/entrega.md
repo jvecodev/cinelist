@@ -55,7 +55,7 @@ Comparamos os dois somativos da disciplina: o DataAudio, catálogo de músicas e
 
 ## Seção 5 - Explicação Técnica
 - **Tema:** Navegação condicional: como o `AuthContext` decide entre o Stack de login e o Stack do app, e por que não usar `navigation.navigate('Login')` no logout (`src/contexts/AuthContext.tsx`, `src/navigation/RootNavigator.tsx`, `App.tsx`)
-- **Minuto no vídeo:** 5:30-8:00
+- **Minuto no vídeo:** 5:20 - 7:10
 
 ## Seção 6 - Screenshots
 - **Login:** ![Login](screenshots/01-login.png)
