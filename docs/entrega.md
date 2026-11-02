@@ -43,11 +43,15 @@ Cada item faltante = -20%. Itens `TODO` dependem do grupo.
 | RF10 Acessibilidade | Sim | `src/theme/index.ts`, `src/hooks/useGridColumns.ts`, `docs/validacao-rf07-rf10.md` |
 
 ## Seção 4 - Flutter x React Native (meia página)
-TODO grupo: revisar com a experiência real do somativo de Flutter. Pontos que a rubrica pede, com o que temos do lado RN:
-- **Estado global (Provider x Context):** aqui, `FavoritesContext`/`ConsumedContext` com `createContext` + hook customizado (`useFavorites`). No Flutter: ______.
-- **Listas (GridView x FlatList):** `FlatList` com `numColumns`, `onEndReached` e `keyExtractor` virtualiza a grade. No Flutter: `GridView.builder` ______.
-- **Assincronismo (FutureBuilder x useEffect/useState):** estados explícitos no `useFetch`/`useShows`, com cancelamento via `AbortController`. No Flutter: `FutureBuilder` ______.
-- **Ferramentas (hot reload x Fast Refresh/Expo Go):** Expo Go no celular, sem build nativo. No Flutter: ______.
+Comparamos os dois somativos da disciplina: o DataAudio, catálogo de músicas em Flutter, e o CineLista, catálogo de séries em React Native.
+
+**Estado global (Provider × Context).** No DataAudio, cada domínio tem uma classe `ChangeNotifier`, registrada em um `MultiProvider`, e as telas observam as mudanças com `context.watch`. No CineLista, usamos `createContext` com um Provider e hooks próprios, como `useFavorites()`. O Provider separa melhor a lógica da interface e fica mais fácil de testar. O Context é nativo do React e exige menos estrutura, mas qualquer mudança no valor re-renderiza os componentes que o consomem.
+
+**Listas (GridView × FlatList).** No Flutter, a grade usa `SliverGrid.builder`, construída sob demanda, e a próxima página é pedida por um botão "carregar mais". No React Native, a `FlatList` com `numColumns` já oferece virtualização, `onEndReached` e pull-to-refresh, e a rolagem infinita fica automática. Em compensação, exige atenção ao `keyExtractor` e ao `extraData` para atualizar os cards.
+
+**Assincronismo (FutureBuilder × useEffect/useState).** No Flutter, o `FutureBuilder` trata de forma declarativa os estados de carregamento, erro e dado, e por isso o usamos em leituras pontuais, como os detalhes. No React Native, esses estados são controlados manualmente. Por isso criamos o hook `useFetch`, que também cancela requisições com `AbortController` quando a tela é fechada. Dá mais trabalho no início, mas o controle sobre o ciclo de vida é maior.
+
+**Produtividade e ferramentas (hot reload × Fast Refresh/Expo Go).** Os dois atualizam a interface quase instantaneamente durante o desenvolvimento. O Expo Go facilitou o início, pois basta ler o QR code para abrir o app no celular, sem compilar o projeto nativo. O Flutter exige um ambiente mais completo, mas oferece um conjunto de widgets mais padronizado. O hook `useFetch` e os componentes próprios mostraram que, no React, parte da estrutura precisa ser construída pelo grupo.
 
 ## Seção 5 - Explicação Técnica
 - **Tema:** Navegação condicional: como o `AuthContext` decide entre o Stack de login e o Stack do app, e por que não usar `navigation.navigate('Login')` no logout (`src/contexts/AuthContext.tsx`, `src/navigation/RootNavigator.tsx`, `App.tsx`)
